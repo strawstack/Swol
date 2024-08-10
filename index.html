@@ -7,82 +7,186 @@
     <link rel="stylesheet" href="style.css">
 
     <script src="wasm.js"></script>
-    <script src="main.js"></script>
   </head>
   <body>
 
-    <h1>
-      <div>SWOL</div>
-    </h1>
+    <h1>SWOL</h1>
 
-    <div>
+    <div class="subtitle leftmargin">
       <div><span>S</span>imple</div>
       <div><span>W</span>ASM</div>
       <div><span>O</span>rdinal</div>
       <div><span>L</span>anguage</div>
     </div>
 
-    <h2>Can I "get" Swol?</h2>
-    <p>
+    <h2>How Can I "get" Swol?</h2>
+    <div class="leftmargin">
       <div>Swol is compact and powerful.</div>
       <div>SWOL has only X symbols.</div>
       <div>Swol transpiles to Web Assembly Text.</div> 
       <div>Swol shreds arrays of 64-bit integers.</div>
       <div>Get Swol xor think SMOL.</div>
-    </p>
+    </div>
 
     <h2>Personal Training</h2>
-    <p>
+    <div class="leftmargin">
       <div>Ready to get Swol?</div>
       <div>1. Set your weight (input).</div>
-      <div>Swols weight is lines of spaced integers.</div>
-      <div>2. Hit the gym (type your Swol) and lift.</div>
+      <div class="indent">Swols weight is lines of spaced integers.</div>
+      <div>2. Hit the gym (type your Swol), and then lift.</div>
       <div>3. Check your gains (output) in the mirror.</div>
-    </p>
+    </div>
 
-    <h3>Weight</h3>
-    <div>
-      <textarea></textarea>
+    <!-- https://adventofcode.com/2019/day/1 -->
+    <h3>Weight (input)</h3>
+    <div class="leftmargin">
+      <textarea spellcheck="false"></textarea>
     </div>
     
-    <h3>The Gym</h3>
-    <div>
-      <textarea></textarea>
+    <h3>The Gym (Code)</h3>
+    <div class="leftmargin">
+      <textarea spellcheck="false"></textarea>
+    </div>
+    <div class="leftmargin">
+      <div class="spaceabove output"></div>
     </div>
     
-    <button>Lift</button>
+    <button class="leftmargin">Lift</button>
 
-    <h3>The Mirror</h3>
-    <div></div>
+    <h3>The Mirror (output)</h3>
+    <div class="output leftmargin"></div>
 
-    <h2>Our instructors</h2>
+    <h2>Meet Our instructors</h2>
     <p></p>
 
-    <div>
-      <div>i64.clz</div> <div>F</div> <div></div>
-      <div>i64.ctz</div> <div>T</div> <div></div>
-      <div>i64.popcnt</div> <div>C</div> <div></div>
-      <div>i64.add</div> <div>A</div> <div></div>
-      <div>i64.sub</div> <div>S</div> <div></div>
-      <div>i64.mul</div> <div>M</div> <div></div>
-      <div>i64.div_s</div> <div>D</div> <div></div>
-      <div>i64.rem_s</div> <div>R</div> <div></div>
-      <div>i64.and</div> <div>&</div> <div></div>
-      <div>i64.or</div> <div>|</div> <div></div>
-      <div>i64.xor</div> <div>^</div> <div></div>
-      <div>i64.shl</div> <div>/</div> <div></div>
-      <div>i64.shr_u</div> <div>\</div> <div></div>
-      <div>i64.rotl</div> <div>[</div> <div></div>
-      <div>i64.rotr</div> <div>]</div> <div></div>
-
-      <div>i64.const</div> <div>(integer)</div> <div></div>
-      <div>i64.eqz</div> <div>Z</div> <div></div>
-      <div>i64.eq</div> <div>E</div> <div></div>
-      <div>i64.ne</div> <div>N</div> <div></div>
-      <div>i64.lt_s</div> <div><</div> <div></div>
-      <div>i64.gt_s</div> <div>></div> <div></div>
-      <div>i64.le_s</div> <div>{</div> <div></div>
-      <div>i64.ge_s</div> <div>}</div> <div></div>
+    <div class="table">
+      <div>i64.clz</div> <div>F</div> <div>Count leading zeros</div>
+      <div>i64.ctz</div> <div>T</div> <div>Count trailing zeros</div>
+      <div>i64.popcnt</div> <div>C</div> <div>Count 1's in binary ints</div>
+      <div>i64.add</div> <div>A</div> <div>Add 2 ints</div>
+      <div>i64.sub</div> <div>S</div> <div>Sub 2 ints</div>
+      <div>i64.mul</div> <div>M</div> <div>Multiply 2 ints</div>
+      <div>i64.div_s</div> <div>D</div> <div>Divide 2 ints (signed)</div>
+      <div>i64.rem_s</div> <div>R</div> <div>Remainder of 2 ints (signed)</div>
+      <div>i64.and</div> <div>&</div> <div>Binary AND</div>
+      <div>i64.or</div> <div>|</div> <div>Binary OR (vert line)</div>
+      <div>i64.xor</div> <div>^</div> <div>Binary XOR (Caret symbol)</div>
+      <div>i64.shl</div> <div>/</div> <div>Shift bits left</div>
+      <div>i64.shr_u</div> <div>\</div> <div>Shift bits right (unsigned)</div>
+      <div>i64.rotl</div> <div>[</div> <div>Rotate bits left</div>
+      <div>i64.rotr</div> <div>]</div> <div>Rotate bits right</div>
+      <div>i64.eqz</div> <div>Z</div> <div>Push 1 to stack if int equal to zero</div>
+      <div>i64.eq</div> <div>E</div> <div>Push 1 to stack if equal otherwise push 0</div>
+      <div>i64.ne</div> <div>N</div> <div>Opposite of i64.eq</div>
+      <div>i64.lt_s</div> <div><</div> <div>Less than (signed)</div>
+      <div>i64.gt_s</div> <div>></div> <div>Greater than (signed)</div>
+      <div>i64.le_s</div> <div>{</div> <div>Less than or equal (signed)</div>
+      <div>i64.ge_s</div> <div>}</div> <div>Greater than or equal (signed)</div>
+      <div>i64.const</div> <div>(int)</div> <div>Int literal ex. 1234</div>
     </div>
+
+    <div class="hidden"><pre id="input">126360
+61158
+149929
+88405
+87526
+51688
+75356
+116265
+134986
+111581
+135675
+69679
+74035
+144951
+86157
+68946
+76761
+114768
+70694
+84768
+147379
+78755
+109688
+118595
+54608
+77033
+54654
+61473
+69644
+81744
+97148
+106473
+61541
+98898
+70394
+117635
+128388
+140622
+108691
+126962
+137756
+125904
+75675
+127051
+126388
+85591
+51583
+101392
+62959
+135077
+90916
+127119
+112427
+79703
+54739
+50092
+92505
+53719
+60887
+62642
+76382
+85763
+125799
+67285
+147992
+80713
+133619
+131433
+141765
+109553
+122534
+88734
+115622
+82195
+130771
+121649
+89355
+121364
+71664
+130412
+88936
+63234
+80274
+108251
+136663
+139149
+85052
+67973
+116461
+75070
+144261
+106539
+79712
+116112
+55755
+121428
+79362
+103489
+103157
+64403
+</pre>
+</div>
+  <script src="main.js"></script>
   </body>
 </html>

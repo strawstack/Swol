@@ -59,6 +59,9 @@ const _wasmWithImport = (importObject) => {
 
 const _wasmNoImport = async (watStrs) => {
 
+    console.log(watStrs);
+    debugger;
+
     const wabt = await WabtModule();
 
     const module = wabt.parseWat('test.wast', watStrs.join(""));
