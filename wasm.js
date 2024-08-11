@@ -38,13 +38,25 @@ var WabtModule = (() => {
   else if (typeof exports === 'object')
     exports["WabtModule"] = WabtModule;
 
+const interpolate = (strs, exp) => {
+  const res = [];
+  for (let i = 0; i < strs.length - 1; i++) {
+    res.push(strs[i]);
+    res.push(exp[i]);
+  }
+  res.push(strs[strs.length - 1]);
+  return res.join("");
+};
+
 const _wasmWithImport = (importObject) => {
 
-    return async (watStrs) => {
+    return async (strs, exp) => {
+
+        const watStr = interpolate(strs, exp);
 
         const wabt = await WabtModule();
 
-        const module = wabt.parseWat('test.wast', watStrs.join(""));
+        const module = wabt.parseWat('test.wast', watStr);
 
         const binaryBuffer = module.toBinary({}).buffer;
 
@@ -57,33 +69,32 @@ const _wasmWithImport = (importObject) => {
     };
 };
 
-const _wasmNoImport = async (watStrs) => {
+const _wasmNoImport = async (strs, exp) => {
 
-    console.log(watStrs);
-    debugger;
+  const watStr = interpolate(strs, exp);
 
-    const wabt = await WabtModule();
+  const wabt = await WabtModule();
 
-    const module = wabt.parseWat('test.wast', watStrs.join(""));
+  const module = wabt.parseWat('test.wast', watStr);
 
-    const binaryBuffer = module.toBinary({}).buffer;
+  const binaryBuffer = module.toBinary({}).buffer;
 
-    const wasmModule = new WebAssembly.Module(binaryBuffer);
+  const wasmModule = new WebAssembly.Module(binaryBuffer);
 
-    const wasmInstance = new WebAssembly.Instance(wasmModule, {});
+  const wasmInstance = new WebAssembly.Instance(wasmModule, {});
 
-    return wasmInstance.exports;
+  return wasmInstance.exports;
 };
 
-const wasm = (watStrs) => {
+const wasm = (strs, ...exp) => {
 
-    const isObject = !("length" in watStrs);
+    const isObject = !("length" in strs);
 
     if (isObject) {
-        return _wasmWithImport(watStrs);
+        return _wasmWithImport(strs, exp);
 
     } else {
-        return _wasmNoImport(watStrs);
+        return _wasmNoImport(strs, exp);
 
     }
 };
