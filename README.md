@@ -10,6 +10,12 @@ A heap-stack can be used instead. A stack implemented in WASM that uses a pointe
 
 So, using a WASM memory space and a pointer, we can build a stack machine in WASM. Then we can implement  operations accessible from SWOL that "compile" to a few lines of WASM. The few lines of WASM will execute push, pop, math operations on the WASM stack. For example, "A" is "add" and pops two numbers off the WASM stack adds them and pushes the result.   
 
+# Images
+
+![](./img/s1.png)
+
+![](./img/s2.png)
+
 # Todo
 
 - [ ] Replace `output` divs with readonly text areas that scroll vertically and horizontally.
