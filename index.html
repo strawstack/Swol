@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
 
     <script src="wasm.js"></script>
+    <script src="swol.js"></script>
   </head>
   <body>
 
@@ -40,35 +41,37 @@
     <!-- https://adventofcode.com/2019/day/1 -->
     <h3>Weight (input)</h3>
     <div class="leftmargin">
-      <textarea spellcheck="false">1969
-100756</textarea>
+      <textarea spellcheck="false" class="weight">27
+12</textarea>
     </div>
     
     <h3>The Gym (Code)</h3>
     <div class="leftmargin">
-      <textarea spellcheck="false">PP3DP2SPP3DP2SA</textarea>
+      <textarea spellcheck="false" class="code input">A</textarea>
     </div>
     <div class="leftmargin">
-      <div class="spaceabove code output"></div>
+      <div class="spaceabove wasm output"></div>
     </div>
     
-    <button class="leftmargin">Lift</button>
+    <button class="leftmargin lift">Lift</button>
 
     <h3>The Mirror (output)</h3>
-    <div class="output leftmargin"></div>
+    <div class="mirror output leftmargin"></div>
 
     <h2>Meet Our instructors</h2>
     <p></p>
 
     <div class="table">
-      <div>i64.clz</div> <div>F</div> <div>Count leading zeros</div>
-      <div>i64.ctz</div> <div>T</div> <div>Count trailing zeros</div>
-      <div>i64.popcnt</div> <div>C</div> <div>Count 1's in binary ints</div>
+      <div>WASM</div> <div>SWOL</div> <div>Info</div>
+      <div>Math</div> <div></div> <div></div>
       <div>i64.add</div> <div>A</div> <div>Add 2 ints</div>
       <div>i64.sub</div> <div>S</div> <div>Sub 2 ints</div>
       <div>i64.mul</div> <div>M</div> <div>Multiply 2 ints</div>
       <div>i64.div_s</div> <div>D</div> <div>Divide 2 ints (signed)</div>
       <div>i64.rem_s</div> <div>R</div> <div>Remainder of 2 ints (signed)</div>
+
+      <div class="space"></div> <div></div> <div></div>
+      <div>Bit Wise</div> <div></div> <div></div>
       <div>i64.and</div> <div>&</div> <div>Binary AND</div>
       <div>i64.or</div> <div>|</div> <div>Binary OR (vert line)</div>
       <div>i64.xor</div> <div>^</div> <div>Binary XOR (Caret symbol)</div>
@@ -76,15 +79,29 @@
       <div>i64.shr_u</div> <div>\</div> <div>Shift bits right (unsigned)</div>
       <div>i64.rotl</div> <div>[</div> <div>Rotate bits left</div>
       <div>i64.rotr</div> <div>]</div> <div>Rotate bits right</div>
-      <div>i64.eqz</div> <div>Z</div> <div>Push 1 to stack if int equal to zero</div>
-      <div>i64.eq</div> <div>E</div> <div>Push 1 to stack if equal otherwise push 0</div>
+      <div>i64.clz</div> <div>F</div> <div>Count leading zeros</div>
+      <div>i64.ctz</div> <div>T</div> <div>Count trailing zeros</div>
+      <div>i64.popcnt</div> <div>C</div> <div>Count 1's in binary ints</div>
+
+      <div class="space"></div> <div></div> <div></div>
+      <div>Compairison</div> <div></div> <div></div>
+      <div>i64.eq</div> <div>E</div> <div>Push 1 if equal else 0</div>
       <div>i64.ne</div> <div>N</div> <div>Opposite of i64.eq</div>
+      <div>i64.eqz</div> <div>Z</div> <div>Push 1 if eq to zero</div>
       <div>i64.lt_s</div> <div><</div> <div>Less than (signed)</div>
-      <div>i64.gt_s</div> <div>></div> <div>Greater than (signed)</div>
-      <div>i64.le_s</div> <div>{</div> <div>Less than or equal (signed)</div>
-      <div>i64.ge_s</div> <div>}</div> <div>Greater than or equal (signed)</div>
-      <div>i64.const</div> <div>(int)</div> <div>Int literal ex. 1234</div>
-      <div>local.get</div> <div>P</div> <div>Load from input onto stack or supply literal int ex. P24 to load 24</div>
+      <div>i64.gt_s</div> <div>></div> <div>Greater than</div>
+      <div>i64.le_s</div> <div>{</div> <div>Less than or equal</div>
+      <div>i64.ge_s</div> <div>}</div> <div>Greater than or equal</div>
+
+      <div class="space"></div> <div></div> <div></div>
+      <div>Values</div> <div></div> <div></div>
+      <div>i64.const</div> <div>C(int)</div> <div>A literal int ex. C1234</div>
+      <div>loop</div> <div>L(int)</div> <div>Run cmds "int" times until E</div>
+      <div>end</div> <div>E</div> <div>End statement for loop</div>
+
+      <div class="space"></div> <div></div> <div></div>
+      <div>Stack</div> <div></div> <div></div>
+      <div>_</div> <div>W</div> <div>Swap top two stack elements</div>
     </div>
 
     <div class="hidden"><pre id="input">126360

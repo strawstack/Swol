@@ -87,3 +87,7 @@ body, button, textarea {
     .hidden {
         display: none;
     }
+
+    .space {
+        height: 32px;
+    }

@@ -1,35 +1,96 @@
 (async () => {
-    const out = document.querySelector(".code.output");
+    const { compile } = swol();
 
-    const input = document.querySelector("#input").innerHTML.split("\n");    
-    const ints = input.map(n => parseInt(n, 10));
+    const weightElem = document.querySelector(".weight");
+    const codeElem = document.querySelector(".code.input");
+    const wasmOut = document.querySelector(".wasm.output");
+    const liftElem = document.querySelector(".lift");
+    const outElem = document.querySelector(".mirror.output");
 
-    const stack_load = [];
-    for (let n of ints) {
-        stack_load.push(`i64.const ${n}`);
+    const lift = async (e) => {
+        const ints = weightElem.innerHTML.split("\n").map(n => parseInt(n, 10)).reverse();
+
+        //console.log(ints);
+        //console.log(compile(codeElem.innerHTML));
+
+        const { main } = await wasm`(module
+            ;; (memory $heap 1)
+            (func (export "main") (result i64)
+                (local $r i64)
+                
+                (local $s i64)
+
+                (local $t0 i64)
+                (local $t1 i64)
+
+                (local $i0 i64)
+
+                ;; Program return value
+                (local.set $r (i64.const 0))
+
+                ;; Stack index (heap)
+                (local.set $s (i64.const 0))
+                ;; Stack size temp
+                (local.set $h (i64.const 0))
+                
+                ;; Loop counters
+                ;; TOOD: make dynamic based on number of loops
+                (local.set $i0 (i64.const 2))
+
+                loop $loop0
+
+                    ;; Load Stack
+                    local.get $s
+                    local.set $h
+                    
+
+                    i64.const 27
+                    i64.const 3
+                    i64.div_s
+                    i64.const 2
+                    i64.sub
+                    
+                    i64.const 12
+                    i64.const 3
+                    i64.div_s
+                    i64.const 2
+                    i64.sub
+
+                    i64.add
+                    
+                    local.get $r
+                    i64.add
+                    local.set $r
+
+                    local.get $i0
+                    i64.const 1
+                    i64.sub
+                    local.set $i0
+
+                    local.get $i0
+                    i64.const 0
+                    i64.gt_s
+                    br_if $loop0
+
+                end
+
+                ;; local.get $r
+
+                i64.const 4
+                i64.const 2
+                local.set $t0
+                local.set $t1
+                local.get $t0
+                local.get $t1
+                i64.sub
+                
+            )
+        )`;
+
+        // out.innerHTML = main();
+        console.log(main());
     }
 
-    //
-    // Example: Exported Function
-    //
-    const { main } = await wasm`(module
-        (func (export "main") (result i64)
-            i64.const 1969
-            i64.const 3
-            i64.div_s
-            i64.const 2
-            i64.sub
-            i64.const 100756
-            i64.const 3
-            i64.div_s
-            i64.const 2
-            i64.sub
-            i64.add
-        )
-    )`;
-
-    // PP3DP2S PP3DP2S A
-
-    out.innerHTML = main() + "much more\nanother line\n another";
+    liftElem.addEventListener("click", lift);
 
 })();
