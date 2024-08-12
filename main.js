@@ -7,83 +7,41 @@
     const liftElem = document.querySelector(".lift");
     const outElem = document.querySelector(".mirror.output");
 
+    const memory = new WebAssembly.Memory({ initial: 1 });
+    const data = new DataView(memory.buffer);
+    for (let i = 0; i < 10; i++) {
+        data.setInt32(i * 4, i, true);
+    }
+
     const lift = async (e) => {
-        const ints = weightElem.innerHTML.split("\n").map(n => parseInt(n, 10)).reverse();
+        const { main } = await wasm({ imports: { memory } })`
+        (module
 
-        //console.log(ints);
-        //console.log(compile(codeElem.innerHTML));
+            (import "imports" "memory" (memory 1))
+            
+            (func $store (param i32) (param i32)
+                local.get 0
+                i32.const 8
+                i32.mul
+                local.get 1
+                i32.store
+            )
 
-        const { main } = await wasm`(module
-            ;; (memory $heap 1)
-            (func (export "main") (result i64)
-                (local $r i64)
+            (func $load (param i32) (result i32)
+                local.get 0
+                i32.const 8
+                i32.mul
+                i32.load
+            )
+
+            (func (export "main") (result i32)
                 
-                (local $s i64)
-
-                (local $t0 i64)
-                (local $t1 i64)
-
-                (local $i0 i64)
-
-                ;; Program return value
-                (local.set $r (i64.const 0))
-
-                ;; Stack index (heap)
-                (local.set $s (i64.const 0))
-                ;; Stack size temp
-                (local.set $h (i64.const 0))
+                i32.const 3
+                i32.const 17
+                call $store
                 
-                ;; Loop counters
-                ;; TOOD: make dynamic based on number of loops
-                (local.set $i0 (i64.const 2))
-
-                loop $loop0
-
-                    ;; Load Stack
-                    local.get $s
-                    local.set $h
-                    
-
-                    i64.const 27
-                    i64.const 3
-                    i64.div_s
-                    i64.const 2
-                    i64.sub
-                    
-                    i64.const 12
-                    i64.const 3
-                    i64.div_s
-                    i64.const 2
-                    i64.sub
-
-                    i64.add
-                    
-                    local.get $r
-                    i64.add
-                    local.set $r
-
-                    local.get $i0
-                    i64.const 1
-                    i64.sub
-                    local.set $i0
-
-                    local.get $i0
-                    i64.const 0
-                    i64.gt_s
-                    br_if $loop0
-
-                end
-
-                ;; local.get $r
-
-                i64.const 4
-                i64.const 2
-                local.set $t0
-                local.set $t1
-                local.get $t0
-                local.get $t1
-                i64.sub
-                
+                i32.const 3
+                call $load
             )
         )`;
 
@@ -94,3 +52,4 @@
     liftElem.addEventListener("click", lift);
 
 })();
+
