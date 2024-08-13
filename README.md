@@ -9,8 +9,3 @@ A simple lauguage for getting you the gains you deserve in Advent of Code built 
 ![](./img/s5.png)
 
 ![](./img/s4.png)
-
-# Todo
-
-- [ ] Replace `output` divs with readonly text areas that scroll vertically and horizontally.
-- [ ] Implement parsing of SWOL code.
