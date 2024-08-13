@@ -50,7 +50,7 @@ const interpolate = (strs, exp) => {
 
 const _wasmWithImport = (importObject) => {
 
-    return async (strs, exp) => {
+    return async (strs, ...exp) => {
 
         const watStr = interpolate(strs, exp);
 

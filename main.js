@@ -27,8 +27,10 @@
     const lift = async (e) => {
 
         const { variables, program } = compile(codeElem.innerHTML);
-        console.log(variables);
-        console.log(program);
+
+        // Present wasm program in output window
+        wasmOut.innerHTML = `${variables}\n${program}`;
+
 
         const { main } = await wasm({ imports: { memory, stack_size } })`
         (module
@@ -83,37 +85,8 @@
             )
 
             (func (export "main") (result i32)
-
-                (local $count i32)
-                (local.set $count (i32.const 99))
-
-                call $pop
-                i32.const 3
-                i32.div_s
-                i32.const 2
-                i32.sub
-                call $push
-
-                loop $loop
-                    call $swap
-                    call $pop
-                    i32.const 3
-                    i32.div_s
-                    i32.const 2
-                    i32.sub
-                    call $pop
-                    i32.add
-                    call $push
-
-                    (local.set $count (i32.sub (local.get $count) (i32.const 1)))
-                    local.get $count
-                    i32.const 0
-                    i32.gt_s
-                    br_if $loop
-                end
-
-                call $pop
-
+                ${variables}
+                ${program}
             )
         )`;
 

@@ -33,6 +33,10 @@ body, button, textarea {
         margin-bottom: 20px;
     }
 
+    a {
+        color: goldenrod;
+    }
+
     .subtitle {
         span {
             color: goldenrod;
@@ -54,6 +58,10 @@ body, button, textarea {
         &.output {
             background: #333;
             color: white;
+
+            &.wasm {
+                height: 160px;
+            }
         }
     }
 
