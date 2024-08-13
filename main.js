@@ -6,7 +6,10 @@
     const wasmOut = document.querySelector(".wasm.output");
     const liftElem = document.querySelector(".lift");
     const outElem = document.querySelector(".mirror.output");
-    
+
+    // Place example in input
+    weightElem.innerHTML = document.querySelector("#input").innerHTML;
+
     // Get program input and wasm global for stack size
     const weight = weightElem.innerHTML.split("\n").map(e => parseInt(e, 10)).reverse();
     const stack_size = new WebAssembly.Global({ value: "i32", mutable: true }, weight.length);
@@ -22,6 +25,11 @@
     })();
 
     const lift = async (e) => {
+
+        const { variables, program } = compile(codeElem.innerHTML);
+        console.log(variables);
+        console.log(program);
+
         const { main } = await wasm({ imports: { memory, stack_size } })`
         (module
 
@@ -77,7 +85,7 @@
             (func (export "main") (result i32)
 
                 (local $count i32)
-                (local.set $count (i32.const 3))
+                (local.set $count (i32.const 99))
 
                 call $pop
                 i32.const 3
@@ -104,13 +112,14 @@
                     br_if $loop
                 end
 
-                call $pop                
+                call $pop
 
             )
         )`;
 
-        // out.innerHTML = main();
-        console.log(main());
+        const ans = main();
+        outElem.innerHTML = ans;
+        console.log(ans);
     }
 
     liftElem.addEventListener("click", lift);

@@ -14,6 +14,8 @@ body, button, textarea {
     font-weight: 400;
     color: white;
     background: #333;
+    overflow-x: scroll;
+    overflow-y: scroll;
 }
 
     body {
@@ -48,6 +50,11 @@ body, button, textarea {
         border: 2px solid white;
         color: #333;
         background: white;
+
+        &.output {
+            background: #333;
+            color: white;
+        }
     }
 
         .spaceabove {

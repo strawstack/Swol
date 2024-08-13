@@ -23,15 +23,15 @@
     <h2>Why get Swol?</h2>
     <div class="leftmargin">
       <div>Swol is compact and powerful.</div>
-      <div>SWOL has only X symbols.</div>
+      <div>SWOL has only 33 symbols.</div>
       <div>Swol transpiles to Web Assembly Text.</div> 
-      <div>Swol shreds arrays of 64-bit integers.</div>
+      <div>Swol shreds arrays of 32-bit integers.</div>
       <div>Get Swol xor think SMOL.</div>
     </div>
 
     <h2>Personal Training</h2>
     <div class="leftmargin">
-      <div>Ready to get Swol?</div>
+      <div>Ready get Swol?</div>
       <div>1. Set your weight (input).</div>
       <div class="indent">Swols weight is lines of spaced integers.</div>
       <div>2. Hit the gym (type your Swol), and then lift.</div>
@@ -41,69 +41,68 @@
     <!-- https://adventofcode.com/2019/day/1 -->
     <h3>Weight (input)</h3>
     <div class="leftmargin">
-      <textarea spellcheck="false" class="weight">12
-14
-1969
-100756</textarea>
+      <textarea spellcheck="false" class="weight"></textarea>
     </div>
     
     <h3>The Gym (Code)</h3>
     <div class="leftmargin">
-      <textarea spellcheck="false" class="code input">A</textarea>
+      <textarea spellcheck="false" class="code input">KI3DI2SKL99WKI3DI2SKAKEK</textarea>
     </div>
     <div class="leftmargin">
-      <div class="spaceabove wasm output"></div>
+      <textarea spellcheck="false" readonly class="spaceabove wasm output"></textarea>
     </div>
     
     <button class="leftmargin lift">Lift</button>
 
     <h3>The Mirror (output)</h3>
-    <div class="mirror output leftmargin"></div>
+    <textarea spellcheck="false" readonly class="mirror output leftmargin"></textarea>
 
     <h2>Meet Our instructors</h2>
     <p></p>
 
     <div class="table">
-      <div>WASM</div> <div>SWOL</div> <div>Info</div>
+      <div>Operation</div> <div>SWOL</div> <div>Info</div>
       <div>Math</div> <div></div> <div></div>
-      <div>i32.add</div> <div>A</div> <div>Add 2 ints</div>
-      <div>i32.sub</div> <div>S</div> <div>Sub 2 ints</div>
-      <div>i32.mul</div> <div>M</div> <div>Multiply 2 ints</div>
-      <div>i32.div_s</div> <div>D</div> <div>Divide 2 ints (signed)</div>
-      <div>i32.rem_s</div> <div>R</div> <div>Remainder of 2 ints (signed)</div>
-
+      <div>add</div> <div>A</div> <div>Add 2 ints</div>
+      <div>sub</div> <div>S</div> <div>Sub 2 ints</div>
+      <div>mul</div> <div>M</div> <div>Multiply 2 ints</div>
+      <div>div</div> <div>D</div> <div>Divide 2 ints (signed)</div>
+      <div>rem</div> <div>R</div> <div>Remainder of 2 ints (signed)</div>
+      
       <div class="space"></div> <div></div> <div></div>
       <div>Bit Wise</div> <div></div> <div></div>
-      <div>i32.and</div> <div>&</div> <div>Binary AND</div>
-      <div>i32.or</div> <div>|</div> <div>Binary OR (vert line)</div>
-      <div>i32.xor</div> <div>^</div> <div>Binary XOR (Caret symbol)</div>
-      <div>i32.shl</div> <div>/</div> <div>Shift bits left</div>
-      <div>i32.shr_u</div> <div>\</div> <div>Shift bits right (unsigned)</div>
-      <div>i32.rotl</div> <div>[</div> <div>Rotate bits left</div>
-      <div>i32.rotr</div> <div>]</div> <div>Rotate bits right</div>
-      <div>i32.clz</div> <div>F</div> <div>Count leading zeros</div>
-      <div>i32.ctz</div> <div>T</div> <div>Count trailing zeros</div>
-      <div>i32.popcnt</div> <div>C</div> <div>Count 1's in binary ints</div>
+      <div>and</div> <div>&</div> <div>Binary AND</div>
+      <div>or</div> <div>V</div> <div>Binary OR (vert line)</div>
+      <div>xor</div> <div>X</div> <div>Binary XOR</div>
+      <div>shl</div> <div>/</div> <div>Shift bits left</div>
+      <div>shr</div> <div>\</div> <div>Shift bits right (unsigned)</div>
+      <div>rotl</div> <div>[</div> <div>Rotate bits left</div>
+      <div>rotr</div> <div>]</div> <div>Rotate bits right</div>
+      <div>clz</div> <div>F</div> <div>Count leading zeros</div>
+      <div>ctz</div> <div>T</div> <div>Count trailing zeros</div>
+      <div>popcnt</div> <div>B</div> <div>Count 1's in binary ints</div>
 
       <div class="space"></div> <div></div> <div></div>
       <div>Compairison</div> <div></div> <div></div>
-      <div>i32.eq</div> <div>E</div> <div>Push 1 if equal else 0</div>
-      <div>i32.ne</div> <div>N</div> <div>Opposite of i32.eq</div>
-      <div>i32.eqz</div> <div>Z</div> <div>Push 1 if eq to zero</div>
-      <div>i32.lt_s</div> <div><</div> <div>Less than (signed)</div>
-      <div>i32.gt_s</div> <div>></div> <div>Greater than</div>
-      <div>i32.le_s</div> <div>{</div> <div>Less than or equal</div>
-      <div>i32.ge_s</div> <div>}</div> <div>Greater than or equal</div>
+      <div>eq</div> <div>E</div> <div>Push 1 if equal else 0</div>
+      <div>ne</div> <div>N</div> <div>Opposite of i32.eq</div>
+      <div>eqz</div> <div>Z</div> <div>Push 1 if eq to zero</div>
+      <div>lt</div> <div><</div> <div>Less than (signed)</div>
+      <div>gt</div> <div>></div> <div>Greater than</div>
+      <div>le</div> <div>{</div> <div>Less than or equal</div>
+      <div>ge</div> <div>}</div> <div>Greater than or equal</div>
 
       <div class="space"></div> <div></div> <div></div>
       <div>Values</div> <div></div> <div></div>
-      <div>i32.const</div> <div>C(int)</div> <div>A literal int ex. C1234</div>
+      <div>const</div> <div>I(int)</div> <div>A literal int ex. I1234</div>
       <div>loop</div> <div>L(int)</div> <div>Run cmds "int" times until E</div>
       <div>end</div> <div>E</div> <div>End statement for loop</div>
 
       <div class="space"></div> <div></div> <div></div>
       <div>Stack</div> <div></div> <div></div>
-      <div>_</div> <div>W</div> <div>Swap top two stack elements</div>
+      <div>Swap</div> <div>W</div> <div>Swap top two stack elements</div>
+      <div>Push</div> <div>P</div> <div>Push element onto stack</div>
+      <div>Kick</div> <div>K</div> <div>Pop element off stack</div>
     </div>
 
     <div class="hidden"><pre id="input">126360
@@ -205,8 +204,7 @@
 79362
 103489
 103157
-64403
-</pre>
+64403</pre>
 </div>
   <script src="main.js"></script>
   </body>
