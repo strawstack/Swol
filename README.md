@@ -6,7 +6,7 @@ A simple lauguage for getting you the gains you deserve in Advent of Code built 
 
 # Images
 
-![](./img/s3.png)
+![](./img/s5.png)
 
 ![](./img/s4.png)
 
