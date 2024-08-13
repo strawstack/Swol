@@ -4,9 +4,9 @@ A simple lauguage for getting you the gains you deserve in Advent of Code built 
 
 # Images
 
-![](./img/s1.png)
+![](./img/s3.png)
 
-![](./img/s2.png)
+![](./img/s4.png)
 
 # Todo
 
