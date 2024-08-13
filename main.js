@@ -10,27 +10,26 @@
     // Place example in input
     weightElem.innerHTML = document.querySelector("#input").innerHTML;
 
-    // Get program input and wasm global for stack size
-    const weight = weightElem.innerHTML.split("\n").map(e => parseInt(e, 10)).reverse();
-    const stack_size = new WebAssembly.Global({ value: "i32", mutable: true }, weight.length);
-
-    // Init wasm memory
-    const memory = (() => {
-        const memory = new WebAssembly.Memory({ initial: 1 });
-        const data = new DataView(memory.buffer);
-        for (let i = 0; i < weight.length; i++) {
-            data.setInt32(i * 4, weight[i], true);
-        }
-        return memory;
-    })();
-
     const lift = async (e) => {
 
-        const { variables, program } = compile(codeElem.innerHTML);
+        const { variables, program } = compile(codeElem.value);
 
         // Present wasm program in output window
         wasmOut.innerHTML = `${variables}\n${program}`;
 
+        // Get program input and wasm global for stack size
+        const weight = weightElem.value.split("\n").map(e => parseInt(e, 10)).reverse();
+        const stack_size = new WebAssembly.Global({ value: "i32", mutable: true }, weight.length);
+
+        // Init wasm memory
+        const memory = (() => {
+            const memory = new WebAssembly.Memory({ initial: 1 });
+            const data = new DataView(memory.buffer);
+            for (let i = 0; i < weight.length; i++) {
+                data.setInt32(i * 4, weight[i], true);
+            }
+            return memory;
+        })();
 
         const { main } = await wasm({ imports: { memory, stack_size } })`
         (module
@@ -96,6 +95,5 @@
     }
 
     liftElem.addEventListener("click", lift);
-
 })();
 
