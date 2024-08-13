@@ -1,6 +1,6 @@
 # SWOL
 
-A simple lauguage for getting the gains you deserve in Advent of Code built on top of a stack machine implemented in WebAssembly (WAT).
+A simple lauguage for getting you the gains you deserve in Advent of Code built on top of a stack machine implemented in WebAssembly (WAT).
 
 # Images
 
